@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Страница про нас
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-5 offset-1">
+            <h1 class="text-center">Погодное приложение</h1>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <br>
+                {{ form.name }}
+                <input type="submit" name="send" value="Узнать" class="mt-2 btn btn-danger">
+            </form>
+
+        </div>
+        <div class="col-4 offset-1">
+            <h1 class="text-center">Информация</h1>
+
+            {% for info in all_info %}
+            <div class="alert alert-info">
+                <div class="row">
+                    <div class="col-9">
+                        <b>Город:</b> {{ info.city }}, {{ info.country }}<br>
+                        <b>Время:</b> {{ info.time }}<br>
+                        <b>Температура:</b> {{ info.temp }}<sup>o</sup>
+                    </div>
+                    <div class="col-2 offset-1">
+                        <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоды">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
